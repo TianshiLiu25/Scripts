@@ -5,7 +5,7 @@ RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y curl
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y unzip openjdk-11-jdk nodejs
+RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y unzip openjdk-11-jdk nodejs git
 # install and config sdk
 RUN mkdir -p /root/tools
 WORKDIR /root/tools
@@ -25,7 +25,6 @@ RUN npm install
 # download sign_tool
 ENV SIGN_TOOL_DIR='/root/tools/sign_tool'
 WORKDIR ${SIGN_TOOL_DIR}
-RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y git
 RUN git clone https://gitee.com/openharmony/signcenter_tool --depth=1
 COPY sign_hap.sh sign_hap.sh
 COPY UnsignedReleasedProfileTemplate.json UnsignedReleasedProfileTemplate.json
